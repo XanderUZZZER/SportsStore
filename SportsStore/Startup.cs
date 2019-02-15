@@ -26,7 +26,7 @@ namespace SportsStore
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration["Data:SportStoreProducts:ConnectionString"]));
             services.AddDbContext<AppIdentityDbContext>(options =>
-                options.UseSqlServer(Configuration["Data:SportStoreIdentity:ConnectionString"]));
+                options.UseSqlServer(Configuration["Data:SportStoreProducts:ConnectionString"]));
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>()
                                                                 .AddDefaultTokenProviders();
             //services.AddTransient<IProductRepository, FakeProductRepository>();
@@ -78,6 +78,7 @@ namespace SportsStore
                     template: "{controller}/{action}/{id?}");
             });
             SeedData.EnsurePopulated(app);
+            IdentitySeedData.EnsurePopulated(app);
 
             //app.Run(async (context) =>
             //{
