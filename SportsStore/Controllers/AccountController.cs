@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using SportsStore.Models.ViewModels;
+using SportsStore.Models;
 
 namespace SportsStore.Controllers
 {
@@ -17,6 +18,8 @@ namespace SportsStore.Controllers
         {
             userManager = userMgr;
             signInManager = signInMgr;
+
+            IdentitySeedData.EnsurePopulated(userMgr).Wait();
         }
 
         [AllowAnonymous]
